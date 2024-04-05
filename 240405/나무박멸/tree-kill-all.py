@@ -137,15 +137,15 @@ def removing():
 
 ans = 0
 for year in range(m):
+    growth()
+    breeding()
+    ans += removing()
+
     if year != 0:
         for i in range(n):
             for j in range(n):
                 if board[i][j] < 0 and board[i][j] != -20:
                     board[i][j] += 1
-
-    growth()
-    breeding()
-    ans += removing()
 
 
 
