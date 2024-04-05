@@ -141,11 +141,11 @@ for year in range(m):
     breeding()
     ans += removing()
 
-    if year != 0:
-        for i in range(n):
-            for j in range(n):
-                if board[i][j] < 0 and board[i][j] != -20:
-                    board[i][j] += 1
+    # if year != 0:
+    #     for i in range(n):
+    #         for j in range(n):
+    #             if board[i][j] < 0 and board[i][j] != -20:
+    #                 board[i][j] += 1
 
 
 
