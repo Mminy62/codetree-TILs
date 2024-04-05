@@ -112,31 +112,41 @@ def removing():
                     max_pos = (i, j)
 
     # 최대 제초제 위치에서 제초제 뿌리기
-    x, y = max_pos
-    board[x][y] = -c
-    for d in range(4):
-        x, y = max_pos
-        for _ in range(k):
-            nx = x + rx[d]
-            ny = y + ry[d]
+    if max_pos != (n, n):
+        mx, my = max_pos
+        board[mx][my] = -c
+        for d in range(4):
+            x, y = max_pos
+            for _ in range(k):
+                nx = x + rx[d]
+                ny = y + ry[d]
 
-            if nx < 0 or nx >= n or ny < 0 or ny >= n:
-                break
-            if board[nx][ny] == 0:
+                if nx < 0 or nx >= n or ny < 0 or ny >= n:
+                    break
+                if board[nx][ny] == 0:
+                    board[nx][ny] = -c
+                    break
+                if board[nx][ny] == -20:
+                    break
+                
                 board[nx][ny] = -c
-                break
-            if board[nx][ny] == -20:
-                break
-            
-            board[nx][ny] = -c
-            x, y = nx, ny
+                x, y = nx, ny
 
     return max_cnt
 
+
 ans = 0
-for _ in range(m):
+for year in range(m):
+    if year != 0:
+        for i in range(n):
+            for j in range(n):
+                if board[i][j] < 0 and board[i][j] != -20:
+                    board[i][j] += 1
+
     growth()
     breeding()
     ans += removing()
-    
+
+
+
 print(ans)
