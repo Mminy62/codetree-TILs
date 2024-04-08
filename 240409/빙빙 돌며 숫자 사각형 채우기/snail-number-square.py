@@ -1,10 +1,5 @@
-'''
-n * n
-달팽이 모양으로 
-'''
-
 N, M = map(int, input().split())
-arr = [[0] * M for _ in range(N)]
+arr = [[1] * M for _ in range(N)]
 dx = [0, 1, 0, -1]
 dy = [1, 0, -1, 0]
 num = 1
