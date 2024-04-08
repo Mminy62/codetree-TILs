@@ -17,10 +17,12 @@ while N >= 0 and M >= 0:
         else:
             time = N
         for k in range(time):
-            arr[x][y] = num
+            if arr[x][y] == 1:
+                arr[x][y] = num
             nx, ny = x + dx[i], y + dy[i]
             num += 1
             x, y = nx, ny
+
     N -= 2
     M -= 2
 
