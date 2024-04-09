@@ -9,8 +9,8 @@ dy = [1, 0, -1, 0]
 di = 0
 x, y = 0, -1
 nx, ny = 0, 0
-
-for alpha in range(65, 65 + N * M):
+alpha = 65
+for _ in range(N * M):
 
     while True:
         nx, ny = x + dx[di], y + dy[di]
@@ -25,6 +25,9 @@ for alpha in range(65, 65 + N * M):
 
     arr[nx][ny] = chr(alpha)
     x, y = nx, ny
+    alpha += 1
+    if alpha == 91:
+        alpha = 65
 
 
 for i in range(N):
