@@ -136,7 +136,10 @@ def rotate():
     # 사람 넣기 
     for key in moving_person:
         r, c = people[key]
-        origin[r - x1][c - y1] = 10 + key
+        if type(origin[r - x1][c - y1]) != list:
+            origin[r - x1][c - y1] = [10 + key]
+        else:
+            origin[r - x1][c - y1].append(10 + key)
 
 
     # # x1~size 까지의 행결 시계방향 90도 돌리기  
@@ -147,19 +150,21 @@ def rotate():
     # 돌린 후 집어 넣기 
     for i in range(x1, x1 + size):
         for j in range(y1, y1 + size):
-            if temp[i - x1][j - y1] > 9:
-                key = temp[i - x1][j - y1] - 10
-                people[key] = [i, j]
-                board[i][j] = 0
+            value = temp[i - x1][j - y1]
+            if type(value) == list:
+                for key in value:
+                    people[key - 10] = [i, j]
+                    board[i][j] = 0
                 continue
 
-            if temp[i - x1][j - y1] == -1:
-                ex, ey = i, j
+            else:#일반 정수 값인 경우 
+                if value == -1:
+                    ex, ey = i, j
 
-            if temp[i - x1][j - y1] > 0:
-                temp[i - x1][j - y1] -= 1
+                if value > 0:
+                    value -= 1
 
-            board[i][j] = temp[i - x1][j - y1]
+            board[i][j] = value
     
     return 
 
