@@ -60,7 +60,7 @@ def first_rabbit():# 경주 진행을 위해 토끼 선정
     else:
         pkeys = rabbit_priority_keys.keys()
         for pid in keys:
-            if pid not in rabbit_priority_keys:
+            if pid not in pkeys:
                 heapq.heappush(rabbit_priority, (rabbit_jump[pid], rabbit_pos[pid][0] + rabbit_pos[pid][1], rabbit_pos[pid][0], rabbit_pos[pid][1], pid))
                 rabbit_priority_keys[pid] = 0
 
