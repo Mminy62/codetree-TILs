@@ -46,42 +46,28 @@ rabbit_distance = {}
 rabbit_pos = {}
 rabbit_jump = {}
 rabbit_point = {}
+rabbit_priority = []
+rabbit_priority_keys = {}
 
 def first_rabbit():# 경주 진행을 위해 토끼 선정 
     keys = rabbit_distance.keys()
     # 우선 순위: 점프 횟수가 적, 현재 서있는 행 + 열이 작, 행이 작, 열이 작, 고유번호 작
-    first_pid = 10 ** 9
-    # 점프 횟수, 행 + 열, 행, 열 순으로 
-    temp = [10 ** 9, 10 ** 9, 10 ** 9, 10 ** 9]
-    for pid in keys:
-        r, c = rabbit_pos[pid]
 
-        if temp[0] > rabbit_jump[pid]:
-            first_pid = pid
-            temp = [rabbit_jump[pid], r + c, r, c]
-        elif temp[0] == rabbit_jump[pid] and temp[1] > (r + c):
-            first_pid = pid
-            temp = [rabbit_jump[pid], r + c, r, c]
-        elif temp[0] == rabbit_jump[pid] and temp[1] == (r + c) and temp[2] > r:
-            first_pid = pid
-            temp = [rabbit_jump[pid], r + c, r, c]
-        elif temp[0] == rabbit_jump[pid] and temp[1] == (r + c) and temp[2] == r and temp[3] > c:
-            first_pid = pid
-            temp = [rabbit_jump[pid], r + c, r, c]
-        elif temp[0] == rabbit_jump[pid] and temp[1] == (r + c) and temp[2] == r and temp[3] == c and first_pid > pid:
-            first_pid = pid
-            temp = [rabbit_jump[pid], r + c, r, c]
-
-
-    # rabbit_priority = []
-    # for pid in keys:
-    #     heapq.heappush(rabbit_priority, (rabbit_jump[pid], rabbit_pos[pid][0] + rabbit_pos[pid][1], rabbit_pos[pid][0], rabbit_pos[pid][1], pid))
-
+    if not rabbit_priority:
+        for pid in keys:
+            heapq.heappush(rabbit_priority, (rabbit_jump[pid], rabbit_pos[pid][0] + rabbit_pos[pid][1], rabbit_pos[pid][0], rabbit_pos[pid][1], pid))
+            rabbit_priority_keys[pid] = 0
+    else:
+        pkeys = rabbit_priority_keys.keys()
+        for pid in keys:
+            if pid not in rabbit_priority_keys:
+                heapq.heappush(rabbit_priority, (rabbit_jump[pid], rabbit_pos[pid][0] + rabbit_pos[pid][1], rabbit_pos[pid][0], rabbit_pos[pid][1], pid))
+                rabbit_priority_keys[pid] = 0
 
     # 점프 수 늘리기
-    jid = first_pid
-    # jid = rabbit_priority[0][-1]
+    jid = heapq.heappop(rabbit_priority)[-1]
     rabbit_jump[jid] += 1
+    del rabbit_priority_keys[jid]
 
     return jid
 
