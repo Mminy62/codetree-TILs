@@ -79,14 +79,15 @@ def moving_direction(idx, x, y):
         
         if board[nx][ny] <= 0:
             ans += 1
-    
-            if (nx, ny) == (ex, ey):#출구로 빠져나가서 삭제하기 
+            
+            if board[nx][ny] == -1:
                 del people[idx]
-                return
-        
-            people[idx] = [nx, ny]
-        return
+            
+            if board[nx][ny] == 0:
+                people[idx] = [nx, ny]
 
+            return
+    nx = x
     if ey != ny:
         if ey > ny:
             ny += 1
@@ -95,12 +96,12 @@ def moving_direction(idx, x, y):
     
         if board[nx][ny] <= 0:
             ans += 1
-        
-            if (nx, ny) == (ex, ey):#출구로 빠져나가서 삭제하기 
-                del people[idx]
-                return
             
-            people[idx] = [nx, ny]
+            if board[nx][ny] == -1:
+                del people[idx]
+            
+            if board[nx][ny] == 0:
+                people[idx] = [nx, ny]
 
     return 
 
@@ -183,16 +184,3 @@ for i in range(K):
 
 print(ans)
 print(ex + 1, ey + 1)
-
-'''
-5 3 8
-0 8 0 0 1
-0 1 0 0 0
-0 1 0 1 0
-0 0 0 1 0
-0 0 0 0 0
-3 3
-1 1
-3 5
-3 1
-'''
