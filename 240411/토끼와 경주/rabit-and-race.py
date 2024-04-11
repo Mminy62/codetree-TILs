@@ -47,27 +47,23 @@ rabbit_pos = {}
 rabbit_jump = {}
 rabbit_point = {}
 rabbit_priority = []
-rabbit_priority_keys = {}
 
-def first_rabbit():# 경주 진행을 위해 토끼 선정 
+def first_rabbit(before_pid):# 경주 진행을 위해 토끼 선정 
     keys = rabbit_distance.keys()
     # 우선 순위: 점프 횟수가 적, 현재 서있는 행 + 열이 작, 행이 작, 열이 작, 고유번호 작
 
     if not rabbit_priority:
         for pid in keys:
             heapq.heappush(rabbit_priority, (rabbit_jump[pid], rabbit_pos[pid][0] + rabbit_pos[pid][1], rabbit_pos[pid][0], rabbit_pos[pid][1], pid))
-            rabbit_priority_keys[pid] = 0
     else:
-        pkeys = rabbit_priority_keys.keys()
-        for pid in keys:
-            if pid not in pkeys:
-                heapq.heappush(rabbit_priority, (rabbit_jump[pid], rabbit_pos[pid][0] + rabbit_pos[pid][1], rabbit_pos[pid][0], rabbit_pos[pid][1], pid))
-                rabbit_priority_keys[pid] = 0
+        if before_pid != 0:
+            pid = before_pid
+            heapq.heappush(rabbit_priority, (rabbit_jump[pid], rabbit_pos[pid][0] + rabbit_pos[pid][1], rabbit_pos[pid][0], rabbit_pos[pid][1], pid))
+   
 
     # 점프 수 늘리기
     jid = heapq.heappop(rabbit_priority)[-1]
     rabbit_jump[jid] += 1
-    del rabbit_priority_keys[jid]
 
     return jid
 
@@ -168,11 +164,13 @@ for _ in range(Q):
             rabbit_point[pid] = 0
             
     # 경기 진행 
+    before_pid = 0
     if cmd == 200:
         K, S = temp[1], temp[2]
         for _ in range(K):
-            jid = first_rabbit()
+            jid = first_rabbit(before_pid)
             first_pos(N, M, jid, K)
+            before_pid = jid
             # print("위치:", rabbit_pos)
             # print("점수:", rabbit_point)
         first_S(S)
