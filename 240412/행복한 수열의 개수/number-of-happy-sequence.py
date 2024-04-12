@@ -19,6 +19,9 @@ for i in range(n):
     for j in range(1, n):
         if pre == temp[j]:
             cnt += 1
+        else:
+            cnt = 1
+
         pre = temp[j]
 
     if cnt >= m:
@@ -27,16 +30,20 @@ for i in range(n):
 for i in range(n):
     temp = []
     for j in range(n):
-        temp.append(arr[i][j])
-        
+        temp.append(arr[j][i])
+
     pre = temp[0]
     cnt = 1
     for j in range(1, n):
         if pre == temp[j]:
             cnt += 1
-        pre = temp[j]
+        else:
+            cnt = 1
+
+        pre = temp[j]     
         
     if cnt >= m:
         ans += 1
+
     
 print(ans)
