@@ -11,20 +11,24 @@ for _ in range(n):
     arr.append(list(map(int, input().split())))
 
 ans = 0
-# 먼저 행검사 
-for i in range(n):
-    temp = arr[i]
-    pre = temp[0]
-    cnt = 1
-    for j in range(1, n):
-        if pre == temp[j]:
+
+def check(seq):
+    max_cnt, cnt = 1, 1
+    for i in range(1, n):
+        if seq[i - 1] == seq[i]:
             cnt += 1
         else:
             cnt = 1
+        max_cnt = max(max_cnt, cnt)
 
-        pre = temp[j]
+    if max_cnt >= m:
+        return True
+    return False
 
-    if cnt >= m:
+# 먼저 행검사 
+for i in range(n):
+    temp = arr[i]
+    if check(temp):
         ans += 1
 
 for i in range(n):
@@ -32,18 +36,7 @@ for i in range(n):
     for j in range(n):
         temp.append(arr[j][i])
 
-    pre = temp[0]
-    cnt = 1
-    for j in range(1, n):
-        if pre == temp[j]:
-            cnt += 1
-        else:
-            cnt = 1
-
-        pre = temp[j]     
-        
-    if cnt >= m:
-        ans += 1
-
+    if check(temp):
+        ans += 1    
     
 print(ans)
