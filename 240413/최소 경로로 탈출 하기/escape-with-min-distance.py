@@ -36,11 +36,9 @@ while q:
             continue
         if board[nx][ny] == 0:
             continue
-        
-        # 1 이고, 방문 안했으면 ok
 
         if board[nx][ny] == 1 and not visited[nx][ny]:
+            visited[nx][ny] = True
             q.append((nx, ny, cnt + 1))
-
 
 print(ans)
