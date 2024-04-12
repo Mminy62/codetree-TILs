@@ -72,7 +72,7 @@ def attack():
     dy = [1, 0, -1, 0]
 
     smallest_route = [] # count, [records] 로 정렬하면 알아서 뽑도록
-    small_cnt = 18
+    small_cnt = 20
     power = board[ax][ay]
 
     visited = [[False] * M for _ in range(N)]
