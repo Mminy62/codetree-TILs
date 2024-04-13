@@ -6,14 +6,16 @@ dy = [-2, -1, 1, 2, 2, 1, -1, -2]
 
 n = int(input())
 sx, sy, ex, ey = map(int, input().split())
+sx -= 1
+sy -= 1
+ex -= 1
+ey -= 1
 
 ans = -1
 
 q = []
 # 시작 위치, 벙문 했던 곳은 가지 않는다. 먼저 방문하면 장땡임 
 heapq.heappush(q, (0, sx, sy))
-visited = [[False] * n for _ in range(n)]
-visited[sx][sy] = True
 distance = [[INF] * n for _ in range(n)]
 
 while q:
