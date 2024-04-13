@@ -17,6 +17,7 @@ q = []
 # 시작 위치, 벙문 했던 곳은 가지 않는다. 먼저 방문하면 장땡임 
 heapq.heappush(q, (0, sx, sy))
 distance = [[INF] * n for _ in range(n)]
+distance[sx][sy] = 0
 
 while q:
     cnt, x, y = heapq.heappop(q)
