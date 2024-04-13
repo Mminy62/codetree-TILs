@@ -35,5 +35,7 @@ while q:
             distance[nx][ny] = cnt + 1
             heapq.heappush(q, (cnt + 1, nx, ny))
 
+if distance[ex][ey] != INF:
+    ans = distance[ex][ey]
 
-print(distance[ex][ey])
+print(ans)
