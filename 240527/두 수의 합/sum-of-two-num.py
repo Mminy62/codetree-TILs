@@ -13,8 +13,8 @@ for num in set(arr):
     cnt = dic[num]
     remain = k - num
     if remain == num:
-        answer += cnt * (cnt - 1) // 2
+        answer += cnt * (cnt - 1)
     else:
         answer += cnt * (dic[remain])
     
-print(answer)
+print(answer // 2)
