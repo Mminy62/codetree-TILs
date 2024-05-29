@@ -1,8 +1,3 @@
-'''
-하나씩 골라서 0이 되는 경우,,
-
-
-'''
 from collections import Counter, defaultdict
 n = int(input())
 
@@ -24,8 +19,7 @@ for item1 in dics[2].keys():
 
 answer = 0
 for a in A.keys():
-    for b in B.keys():
-        if a + b == 0:
-            answer += A[a] * B[b]
+    if -a in B:
+        answer += A[a] * B[-a]
 
 print(answer)
