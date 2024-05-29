@@ -11,8 +11,12 @@ for k, v in dic.items():
     if v == 1:
         result.append(k)
 
-if len(result) == 1:
+if not result:
+    print("None")
+
+elif len(result) == 1:
     print(result[0])
+    
 else:
     ans = len(word)
     for c in result:
