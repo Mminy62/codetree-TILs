@@ -15,10 +15,10 @@ for i in range(1, n + 1):
 for i in range(3 * k):
     i %= k
     a, b = move[i]
-    a, b = a - 1, b - 1
+    a, b = a - 1, b - 1 # 1, 3 => 0, 2 
     arr[a], arr[b] = arr[b], arr[a]
-    dic[arr[a]].add(b)
-    dic[arr[b]].add(a)
+    dic[arr[b]].add(b)
+    dic[arr[a]].add(a)
 
 for i in range(1, n + 1):
     print(len(dic[i]))
