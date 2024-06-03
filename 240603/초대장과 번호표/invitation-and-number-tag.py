@@ -8,11 +8,18 @@ n명의
 
 invited = set([1])
 n, g = map(int, input().split())
+arr = []
 for _ in range(g):
-    arr = list(map(int, input().split()))
-    num = arr[0]
-    people = set(arr[1:]) - invited
+    tmp = list(map(int, input().split()))
+    tmp = [tmp[0]] + sorted(tmp[1:])
+    arr.append(tmp)
 
+arr.sort()
+
+for people in arr:
+    num = people[0]
+    print(invited, people[1:])
+    people = set(people[1:]) - invited
     if len(people) == 1:
         invited = invited | people
 
