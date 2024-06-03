@@ -12,10 +12,9 @@ for _ in range(g):
     arr = list(map(int, input().split()))
     num = arr[0]
     people = set(arr[1:]) - invited
-    if not people:
-        continue
-    # print(people, len(people))
+
     if len(people) == 1:
         invited = invited | people
+
 
 print(len(invited))
