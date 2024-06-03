@@ -6,7 +6,7 @@ n명의
 
 '''
 
-invited = set()
+invited = set([1])
 n, g = map(int, input().split())
 for _ in range(g):
     arr = list(map(int, input().split()))
@@ -14,11 +14,8 @@ for _ in range(g):
     people = set(arr[1:]) - invited
     if not people:
         continue
-    if len(people) < 2:
+    # print(people, len(people))
+    if len(people) == 1:
         invited = invited | people
-        
-    else:
-        people = list(people)
-        invited.add(people[0])
-    
+
 print(len(invited))
