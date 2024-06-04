@@ -2,6 +2,8 @@
 배수의 관계이면 가장 큰 걸로 나눠주기 시작하는 것이 좋다
 
 '''
+import sys
+sys.setrecursionlimit(10**9)
 n, k = map(int, input().split())
 arr = []
 for _ in range(n):
