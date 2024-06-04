@@ -3,7 +3,8 @@
 
 '''
 import sys
-sys.setrecursionlimit(10**9)
+sys.setrecursionlimit(10**5)
+
 n, k = map(int, input().split())
 arr = []
 for _ in range(n):
