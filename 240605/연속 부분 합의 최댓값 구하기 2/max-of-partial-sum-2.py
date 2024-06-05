@@ -9,6 +9,9 @@ for item in arr:
     if ans >= 0:
         ans += item
     else:
-        ans = item
+        if ans < item:
+            ans = item
+        else:
+            continue
 
 print(ans)
