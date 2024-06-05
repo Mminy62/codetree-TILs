@@ -5,13 +5,13 @@
 n = int(input())
 arr = list(map(int, input().split()))
 ans = 0
+result = 0
 for item in arr:
     if ans >= 0:
         ans += item
-    else:
-        if ans < item:
-            ans = item
-        else:
-            continue
-
-print(ans)
+    else: # 음수인 경우 
+        ans = item
+    
+    result = max(result, ans)
+        
+print(result)
