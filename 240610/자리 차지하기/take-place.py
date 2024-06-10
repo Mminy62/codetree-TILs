@@ -3,7 +3,7 @@ m 개의 비어있는 의자,
 1-m개 번호
 n개의 원하는 번호 숫자
 i번째 사람은 1~ ai 의자에만 앉고 싶다는 것, 
-1번 사람부터 순서대로 
+1번 사람부터 순서대로 i
 최초로 앉지 못하는 사람이 생기면 종료
 
 앉게되는 사람의 수를 최대로 만들어라
@@ -18,24 +18,17 @@ SortedSet을 이용하려면?
 from sortedcontainers import SortedSet
 
 n, m = map(int, input().split())
-s = SortedSet([i for i in range(1, m + 1)])
+seats = SortedSet([i for i in range(1, m + 1)])
 ans = 0
-
+# 자리후보를 담은 seats
 arr = list(map(int, input().split()))
 for num in arr:
-    flag = False
-    for i in range(num, 0, -1):
-        if i not in s:
-            if i == 1:
-                flag = True
-            else:
-                continue
-        else:
-            s.remove(i)
-            ans += 1
+    idx = seats.bisect_left(num)
+    if seats[idx] > num:
+        if idx == 0:
             break
-    if flag:
-        break
-    
+        idx -= 1
+    seats.remove(seats[idx])
+    ans += 1
 
 print(ans)
