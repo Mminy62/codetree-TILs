@@ -18,19 +18,17 @@ SortedSet을 이용하려면?
 from sortedcontainers import SortedSet
 
 n, m = map(int, input().split())
-seats = SortedSet([i for i in range(1, m + 1)])
+seats = SortedSet(range(1, m + 1))
 ans = 0
 # 자리후보를 담은 seats
 arr = list(map(int, input().split()))
 for num in arr:
-    idx = seats.bisect_left(num)
-    if idx == len(seats):
+    idx = seats.bisect_right(num)
+    if idx != 0:
         idx -= 1
-    if seats[idx] > num:
-        idx -= 1
-    if idx == -1:
+        seats.remove(seats[idx])
+        ans += 1
+    else:
         break
-    seats.remove(seats[idx])
-    ans += 1
 
 print(ans)
