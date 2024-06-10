@@ -24,10 +24,12 @@ ans = 0
 arr = list(map(int, input().split()))
 for num in arr:
     idx = seats.bisect_left(num)
-    if seats[idx] > num:
-        if idx == 0:
-            break
+    if idx == len(seats):
         idx -= 1
+    if seats[idx] > num:
+        idx -= 1
+    if idx == -1:
+        break
     seats.remove(seats[idx])
     ans += 1
 
