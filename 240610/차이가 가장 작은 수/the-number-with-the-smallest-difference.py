@@ -10,7 +10,7 @@ for _ in range(n):
     s.add(int(input()))
 
 ans = sys.maxsize
-for i in range(n):
+for i in range(len(s)):
     num = s[i]
     idx = s.bisect_left(num + m)
     if idx == len(s):
