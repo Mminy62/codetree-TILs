@@ -5,8 +5,9 @@ for _ in range(K):
     arr[a - 1] += 1
     arr[b] -= 1
 
-for i in range(N + 1):
+for i in range(1, N + 1):
     arr[i] += arr[i - 1]
 arr.pop()
 arr.sort()
+
 print(arr[N//2])
