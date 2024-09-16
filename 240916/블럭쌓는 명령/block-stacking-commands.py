@@ -8,4 +8,4 @@ for _ in range(K):
 for i in range(1, N + 1):
     arr[i] += arr[i - 1]
 arr.sort()
-print(arr[N//2])
+print(arr[(N + 1)//2])
