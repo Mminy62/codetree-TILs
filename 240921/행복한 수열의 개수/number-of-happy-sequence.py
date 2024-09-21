@@ -15,12 +15,12 @@ def search(flag):
             (r, c) = (i, j) if flag else (j, i)
             if board[r][c] == pre:
                 cnt += 1
-                if board[r][c] != pre:
-                    if cnt >= M:
-                        result += 1
-                        break
-                    cnt = 1
-                    pre = board[r][c]
+            if board[r][c] != pre:
+                if cnt >= M:
+                    result += 1
+                    break
+                cnt = 1
+                pre = board[r][c]
             if j == N - 1:
                 if cnt >= M:
                     result += 1
