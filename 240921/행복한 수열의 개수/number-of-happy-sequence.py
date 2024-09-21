@@ -19,6 +19,7 @@ for i in range(N):
             if board[i][j] != pre or j == N - 1:
                 if cnt >= M:
                     result += 1
+                    break
                 cnt = 1
                 pre = board[i][j]
 
@@ -35,6 +36,7 @@ for i in range(N):
             if board[j][i] != pre or j == N - 1:
                 if cnt >= M:
                     result += 1
+                    break
                 cnt = 1
                 pre = board[j][i]
 
