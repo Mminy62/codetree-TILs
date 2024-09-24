@@ -24,7 +24,7 @@ result_cnt = 0
 
 for x in range(n):
     for y in range(n):
-        for k in range(n):
+        for k in range(n + 1):
             cost = - ( k * k + (k + 1) * (k + 1) )
             cnt = 0
             for t in range(k + 1): #윗부분
