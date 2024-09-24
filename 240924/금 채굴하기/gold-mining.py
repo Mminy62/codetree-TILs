@@ -44,7 +44,7 @@ for x in range(n):
                     if board[nx][ny] == 1:
                         cost += m
                         cnt += 1
-            if cost > 0:
+            if cost >= 0:
                 result_cnt = max(result_cnt, cnt)
 
 print(result_cnt)
