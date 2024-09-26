@@ -15,7 +15,7 @@ def check_positive(sx, sy, ex, ey):
                 return False
     return True
 
-result = 0
+result = -1
 for height in range(1, N + 1):
     for width in range(1, M + 1):
         for i in range(N):
