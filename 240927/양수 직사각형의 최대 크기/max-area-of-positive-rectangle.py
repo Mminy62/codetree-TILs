@@ -24,7 +24,7 @@ for height in range(1, N + 1):
                 if nx < 0 or nx > N or ny < 0 or ny > M:
                     continue
                 if check_positive(i, j, nx, ny):
-                    result = max(result, (nx - i) * (ny - j))
+                    result = max(result, height * width)
 
 
 print(result)
