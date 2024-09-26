@@ -11,7 +11,7 @@ grid = [list(map(int, input().split())) for _ in range(N)]
 def check_positive(sx, sy, ex, ey):
     for x in range(sx, ex):
         for y in range(sy, ey):
-            if grid[x][y] < 0:
+            if grid[x][y] <= 0:
                 return False
     return True
 
