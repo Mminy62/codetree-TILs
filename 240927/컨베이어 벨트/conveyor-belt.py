@@ -17,7 +17,7 @@ for _ in range(2):
 # for i in range(2):
 #     print(" ".join(map(str, belts[i * n: i * n + n])))
 
-
+t = t % len(belts)
 belts = belts[-t:] + belts[:-t]
 
 for i in range(2):
