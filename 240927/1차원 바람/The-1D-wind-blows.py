@@ -47,28 +47,28 @@ def reverse_direct(direct):
     else:
         return "L"
 
-def up_down(idx):
-    directs = {0: [-1], 1: [1], 2: [-1, 1]}
-    return directs[idx]
+def search_direction(di):
+    directs = {"up": [-1], "down": [1], "center": [-1, 1]}
+    return directs[di]
 
 for _ in range(Q):
     row, direct = input().split()
     row = int(row) - 1
+    q = deque([(row, direct, search_direction("center"))])
 
-    q = deque([(row, direct, 2)])
     while q:
-        row, direct, spreads = q.popleft()
+        row, direct, directs = q.popleft()
         shift(row, direct)
         
-        for di in up_down(spreads):
+        for di in directs:
             direct_row = row + di
 
             if in_range(direct_row) and check_correct(row, direct_row):
-                if direct_row == -1:
-                    spread = 0
+                if di == -1:
+                    di_type = "up"
                 else:
-                    spread = 1
-                q.append((direct_row, reverse_direct(direct), spread))
+                    di_type = "down"
+                q.append((direct_row, reverse_direct(direct), search_direction(di_type)))
 
 for i in range(N):
     print(" ".join(map(str, arr[i])))
