@@ -2,38 +2,36 @@
 from collections import deque
 n = int(input())
 result = 0
+arr = []
 
-def check(arr):
-    num = arr[0]
-    for i in range(1, len(arr)):
-        if num != arr[i]:
-            return False
-    return True
-
-def is_beautiful(numbers):
+def is_beautiful():
     cur = 0
-    length = len(numbers)
-    while cur < length:
-        step = int(numbers[cur])
-        if cur + step > length:
+
+    while cur < n:
+        step = arr[cur]
+
+        if cur + arr[cur] - 1 >= n:
             return False
-        if not check(numbers[cur: cur + step]):
-            return False
+
+        for j in range(cur, cur + step):
+            if arr[j] != arr[cur]:
+                return False
         cur = cur + step
+
     return True
 
-def dfs(arr):
-    global result
+def dfs():
+    global result, arr
     if len(arr) == n:
-        if is_beautiful(arr):
+        if is_beautiful():
             result += 1
         return 
     
-    for num in ['1', '2', '3', '4']:
+    for num in range(1, 5):
         arr.append(num)
-        dfs(arr)
+        dfs()
         arr.pop()
 
-dfs([])
+dfs()
 
 print(result)
