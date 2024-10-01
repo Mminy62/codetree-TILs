@@ -3,14 +3,20 @@
 입력으로 주어지는 m개의 문자열 중에서 집합 S에 포함되어 있는게 총 몇개인지
 
 '''
-
+from collections import defaultdict
 n, m = map(int, input().split())
 s1 = set()
 for _ in range(n):
     s1.add(input())
 
-s2 = set()
+sdict = defaultdict(int)
 for _ in range(m):
-    s2.add(input())
+    sdict[input()] += 1
+s2 = set(sdict.keys())
+keys = s1.intersection(s2)
 
-print(len(s1.intersection(s2)))
+result = 0
+for key in keys:
+    result += sdict[key]
+
+print(result)
