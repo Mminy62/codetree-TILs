@@ -27,7 +27,7 @@ if not flag: #맨 앞자리까지 변화X
     if pre[0] == N - (K - 1):
         print("NONE")
     else:
-        after = range(pre[i] + 1, pre[i] + K)
+        after = range(pre[0] + 1, pre[0] + K)
         print(" ".join(map(str, after)))
 else:
     after[0] = pre[0]
