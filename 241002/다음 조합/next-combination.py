@@ -19,11 +19,15 @@ for i in range(K - 1, -1, -1):
     if index == length:
         after[i] = pre[i]
         continue
+    if not flag and i == 0:
+        # 앞자리까지왔다는 뜻 -> 
+        if pre[i] == N - (K - 1):
+            after = "NONE"
+        else:
+            after = range(pre[i] + 1, pre[i] + 4)
     else:
         after[i] = coords[index]
         flag = True
 
-if after == pre:
-    print("NONE")
-else:
-    print(" ".join(map(str, after)))
+
+print(" ".join(map(str, after)))
