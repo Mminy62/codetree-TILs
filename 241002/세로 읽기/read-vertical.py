@@ -1,15 +1,14 @@
 from collections import deque
-arr = []
+arr = deque([])
 for _ in range(5):
     arr.append(deque(list(input())))
 
 result = ''
 while arr:
-    for i in range(len(arr)):
-        if arr[i]:
-            result += arr[i].popleft()
-        else:
-            arr.pop(i)
-            break
+    line = arr.popleft()
+    if line:
+        result += line.popleft()
+    if line:
+        arr.append(line)
 
 print(result)
