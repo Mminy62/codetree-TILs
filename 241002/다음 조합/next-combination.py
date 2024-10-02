@@ -5,6 +5,7 @@ coords = list(range(1, N + 1))
 
 for num in pre:
     coords.remove(num)
+coords.sort()
 
 after = [0] * K
 length = len(coords)
