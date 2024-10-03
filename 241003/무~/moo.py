@@ -25,35 +25,75 @@ S(3) = " m o o m o o o m o o m o o o o m o o m o o o m o o
 2 3 2 
 moo 
 '''
-length = [0] * 40
-length[0] = 3
-def find_step(num):
-    for step in range(1, 28):
-        length[step] = length[step - 1] * 2 + step + 3
-        if length[step - 1] < num and num <= length[step]:
-            return step
+# length = [0] * 40
+# length[0] = 3
+# def find_step(num):
+#     for step in range(1, 28):
+#         length[step] = length[step - 1] * 2 + step + 3
+#         if length[step - 1] < num and num <= length[step]:
+#             return step
 
-def dfs(step):
-    if step == 0:
-        return "moo"
-    return dfs(step - 1) + "m" + "o" * (step + 2) + dfs(step - 1)
+# def dfs(step):
+#     if step == 0:
+#         return "moo"
+#     return dfs(step - 1) + "m" + "o" * (step + 2) + dfs(step - 1)
 
-length = [0] * 40
-length[0] = 3
-step = 0
+# length = [0] * 40
+# length[0] = 3
+# step = 0
+# N = int(input())
+# index = N - 1
+# if N > 3:
+#     step = find_step(N)
+#     print(length[step], step)
+#     if N > length[step] // 2:
+#         N = length[step] - N
+#         step = find_step(N)
+#         index = N + 1
+#         print()
+
+# word = "moo"
+# for i in range(1, step + 1):
+#     word = word + "m" + "o" * (i + 2) + word
+
+# print(word[index])
+
+
+def find_nth_moo(N):
+    # 각 단계에서 S(t)의 길이를 재귀적으로 계산하는 함수
+    def get_length(t):
+        if t == 0:
+            return 3  # S(0)은 "moo"로 길이가 3
+        return 2 * get_length(t - 1) + (t + 3)
+    
+    # 재귀적으로 N번째 문자를 찾는 함수
+    def solve(t, N):
+        if t == 0:
+            # S(0)은 "moo"이므로 간단하게 처리 가능
+            return "moo"[N - 1]
+        
+        len_prev = get_length(t - 1)  # S(t-1)의 길이
+        
+        if N <= len_prev:
+            # N이 첫 번째 S(t-1)에 속하는 경우
+            return solve(t - 1, N)
+        elif N > len_prev + (t + 3):
+            # N이 두 번째 S(t-1)에 속하는 경우
+            return solve(t - 1, N - len_prev - (t + 3))
+        else:
+            # N이 중간의 "moo...o"에 속하는 경우
+            if N == len_prev + 1:
+                return 'm'
+            else:
+                return 'o'
+    
+    # 단계 t를 찾아서 해결
+    t = 0
+    while get_length(t) < N:
+        t += 1
+    
+    return solve(t, N)
+
+# 입력 및 실행
 N = int(input())
-index = N - 1
-if N > 3:
-    step = find_step(N)
-    print(length[step], step)
-    if N > length[step] // 2:
-        N = length[step] - N
-        step = find_step(N)
-        index = N + 1
-        print()
-
-word = "moo"
-for i in range(1, step + 1):
-    word = word + "m" + "o" * (i + 2) + word
-
-print(word[index])
+print(find_nth_moo(N))
