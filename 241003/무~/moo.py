@@ -31,7 +31,7 @@ step = 0
 N = int(input())
 
 if N > 3:
-    for i in range(1, 24):
+    for i in range(1, 25):
         length[i] = length[i - 1] * 2 + i + 3
         if length[i - 1] < N and N <= length[i]:
             step = i
@@ -43,4 +43,5 @@ if step > 1:
     for i in range(1, step + 1):
         word = word + "m" + "o" * (i + 2) + word
 
-print(word[N - 1])
+# print(word[N - 1])
+print(word)
