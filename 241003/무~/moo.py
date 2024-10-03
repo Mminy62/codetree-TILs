@@ -31,16 +31,19 @@ step = 0
 N = int(input())
 
 if N > 3:
-    for i in range(1, 25):
+    for i in range(1, 28):
         length[i] = length[i - 1] * 2 + i + 3
+        print(length[i])
         if length[i - 1] < N and N <= length[i]:
             step = i
             break
+
 
 # step 까지만 string을 만든다.
 word = "moo"
 if step > 1:
     for i in range(1, step + 1):
         word = word + "m" + "o" * (i + 2) + word
-        
-print(word[N - 1])
+
+print(step)
+# print(word[N - 1])
