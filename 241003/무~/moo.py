@@ -42,6 +42,5 @@ word = "moo"
 if step > 1:
     for i in range(1, step + 1):
         word = word + "m" + "o" * (i + 2) + word
-
-# print(word[N - 1])
-print(word)
+        
+print(word[N - 1])
