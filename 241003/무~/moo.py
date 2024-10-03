@@ -22,28 +22,38 @@ S(3) = " m o o m o o o m o o m o o o o m o o m o o o m o o
 10 25 56 56 * 2 + 
 이 안에 들어간다 싶으면 
 
-
+2 3 2 
+moo 
 '''
+length = [0] * 40
+length[0] = 3
+def find_step(num):
+    for step in range(1, 28):
+        length[step] = length[step - 1] * 2 + step + 3
+        if length[step - 1] < num and num <= length[step]:
+            return step
+
+def dfs(step):
+    if step == 0:
+        return "moo"
+    return dfs(step - 1) + "m" + "o" * (step + 2) + dfs(step - 1)
 
 length = [0] * 40
 length[0] = 3
 step = 0
 N = int(input())
-
+index = N - 1
 if N > 3:
-    for i in range(1, 28):
-        length[i] = length[i - 1] * 2 + i + 3
-        print(length[i])
-        if length[i - 1] < N and N <= length[i]:
-            step = i
-            break
+    step = find_step(N)
+    print(length[step], step)
+    if N > length[step] // 2:
+        N = length[step] - N
+        step = find_step(N)
+        index = N + 1
+        print()
 
-
-# step 까지만 string을 만든다.
 word = "moo"
-if step > 1:
-    for i in range(1, step + 1):
-        word = word + "m" + "o" * (i + 2) + word
+for i in range(1, step + 1):
+    word = word + "m" + "o" * (i + 2) + word
 
-print(step)
-# print(word[N - 1])
+print(word[index])
